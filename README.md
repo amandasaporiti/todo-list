@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-  Crie tarefas
+  Adicione novas tarefas e acompanhe seu progresso de conclusão
 </h3>
 
 <br>
