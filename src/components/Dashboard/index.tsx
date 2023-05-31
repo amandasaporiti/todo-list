@@ -1,6 +1,6 @@
 import { useState, FormEvent, useEffect } from 'react'
 import {
-  Container,
+  DashboardContainer,
   Header,
   Tasks,
   AddNewTask,
@@ -55,32 +55,24 @@ const Dashboard = () => {
     localStorage.setItem('totalTasks', JSON.stringify(totalTasks))
   }, [totalTasks])
 
-  const addTask = (event: FormEvent) => {
+  const handleCreateTask = (event: FormEvent) => {
     event.preventDefault()
 
     if (typedTask) {
       setTasks([...tasks, { id: uuidv4(), task: typedTask, completed: false }])
-
-      if (typedTask) {
-        setTotalTasks(totalTasks + 1)
-      } else {
-        setTotalTasks(totalTasks)
-      }
-
       setTypedTask('')
     } else {
       return []
     }
   }
 
-  const deleteTask = (deleteId: string) => {
-    setTasks(tasks.filter((task) => task.id !== deleteId))
-    setTotalTasks(totalTasks - 1)
+  const handleDeleteTask = (taskId: string) => {
+    setTasks(tasks.filter((task) => task.id !== taskId))
   }
 
-  const completeTask = (completeId: string) => {
+  const handleMarkTaskAsCompleted = (taskId: string) => {
     const newTasks = tasks.map((item) =>
-      item.id === completeId ? { ...item, completed: !item.completed } : item,
+      item.id === taskId ? { ...item, completed: !item.completed } : item,
     )
     setTasks(newTasks)
   }
@@ -88,7 +80,7 @@ const Dashboard = () => {
   const completedTasks = tasks.filter((task) => task.completed).length
 
   return (
-    <Container>
+    <DashboardContainer>
       <Header>
         <img src={logoImg} alt="To Do List" />
       </Header>
@@ -100,9 +92,9 @@ const Dashboard = () => {
             value={typedTask}
             onChange={(e) => setTypedTask(e.target.value)}
           />
-          <button onClick={addTask}>
+          <button onClick={handleCreateTask}>
             Criar
-            <img src={plusImg} alt="Create New Task" />
+            <img src={plusImg} alt="Criar nova tarefa" />
           </button>
         </AddNewTask>
         <TasksData>
@@ -110,7 +102,7 @@ const Dashboard = () => {
             Tarefas criadas <span>{totalTasks}</span>{' '}
           </h2>
           <h2 className="done-text">
-            Concluídas{' '}
+            Concluídas
             <span>
               {completedTasks} de {totalTasks}
             </span>
@@ -127,16 +119,16 @@ const Dashboard = () => {
           </EmptyList>
         ) : (
           <List>
-            {tasks.map((tarefa) => (
-              <div key={tarefa.id}>
+            {tasks.map((task) => (
+              <div key={task.id}>
                 <Button
-                  onClick={() => completeTask(tarefa.id)}
-                  hasCompleted={tarefa.completed}
+                  onClick={() => handleMarkTaskAsCompleted(task.id)}
+                  hasCompleted={task.completed}
                 >
-                  {tarefa.completed ? <CheckIcon /> : <NotCheckdIcon />}
+                  {task.completed ? <CheckIcon /> : <NotCheckdIcon />}
                 </Button>
-                <p>{tarefa.task}</p>
-                <Trash onClick={() => deleteTask(tarefa.id)}>
+                <p>{task.task}</p>
+                <Trash onClick={() => handleDeleteTask(task.id)}>
                   <img src={trashImg} alt="Deseja excluir esta tarefa?" />
                 </Trash>
               </div>
@@ -144,7 +136,7 @@ const Dashboard = () => {
           </List>
         )}
       </Tasks>
-    </Container>
+    </DashboardContainer>
   )
 }
 

@@ -1,30 +1,29 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
-import { BsCircle, BsCheckCircleFill } from "react-icons/bs"
+import { BsCircle, BsCheckCircleFill } from 'react-icons/bs'
 
 export const CheckIcon = styled(BsCheckCircleFill)`
   width: 20px;
-  height: 20px; 
-  color:  #8284FA;
+  height: 20px;
+  color: #8284fa;
   flex-shrink: 0;
-  fill: #8284FA;
+  fill: #8284fa;
 `
 export const NotCheckdIcon = styled(BsCircle)`
   width: 20px;
-  height: 20px; 
-  color:  #8284FA;
+  height: 20px;
+  color: #8284fa;
   flex-shrink: 0;
 `
 
-
-export const Container = styled.div`
+export const DashboardContainer = styled.div`
   max-width: 100vw;
   max-height: 100vh;
 `
 
 export const Header = styled.div`
-  width: 100%; 
-  background: #0D0D0D;
+  width: 100%;
+  background: #0d0d0d;
   height: 200px;
   display: flex;
   align-items: center;
@@ -46,7 +45,7 @@ export const AddNewTask = styled.div`
     flex: 1;
     padding: 16px;
     background: #262626;
-    border: 1px solid #0D0D0D;
+    border: 1px solid #0d0d0d;
     border-radius: 8px;
     outline: 0;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -55,7 +54,7 @@ export const AddNewTask = styled.div`
     line-height: 140%;
     color: #fff;
 
-    &:placeholder{
+    &:placeholder {
       font-weight: 400;
       font-size: 16px;
       line-height: 140%;
@@ -63,12 +62,12 @@ export const AddNewTask = styled.div`
     }
   }
 
-  button{
+  button {
     padding: 16px;
-    background:  #1E6F9F;
+    background: #1e6f9f;
     font-weight: 700;
     font-size: 14px;
-    color: #F2F2F2;
+    color: #f2f2f2;
     border: 0;
     border-radius: 8px;
     display: flex;
@@ -76,7 +75,7 @@ export const AddNewTask = styled.div`
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     margin-left: 8px;
 
-    img{
+    img {
       width: 15.97px;
       height: 15.97px;
       margin-left: 5px;
@@ -90,13 +89,13 @@ export const TasksData = styled.div`
   justify-content: space-between;
   margin-top: 63px;
 
-  h2{
+  h2 {
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
-    color: #4EA8DE;
+    color: #4ea8de;
 
-    span{
+    span {
       padding: 1px 8px;
       background: #333333;
       border-radius: 999px;
@@ -105,11 +104,10 @@ export const TasksData = styled.div`
       line-height: 15px;
       margin-left: 4px;
     }
-
   }
 
-  .done-text{
-    color: #8284FA;
+  .done-text {
+    color: #8284fa;
   }
 `
 
@@ -118,7 +116,7 @@ export const List = styled.div`
   flex-direction: column;
   padding: 24px 0 200px 0;
 
-  div{
+  div {
     display: flex;
     justify-content: space-between;
     background: #262626;
@@ -127,31 +125,29 @@ export const List = styled.div`
     border-radius: 8px;
     padding: 20px;
 
-    &+div{
+    & + div {
       margin-top: 12px;
     }
 
-    p{
+    p {
       padding: 0 12px;
       font-weight: 400;
       font-size: 14px;
       line-height: 140%;
-      color: #F2F2F2;
+      color: #f2f2f2;
     }
   }
 `
 
 export const Trash = styled.button`
-
   background: transparent;
-  border:0;
+  border: 0;
 
-  img{
+  img {
     height: 18px;
     width: 18px;
     cursor: pointer;
   }
-
 `
 
 interface ButtonProps {
@@ -160,7 +156,7 @@ interface ButtonProps {
 
 export const Button = styled.button<ButtonProps>`
   background: transparent;
-  border:0;
+  border: 0;
 `
 
 export const EmptyList = styled.div`
@@ -173,9 +169,8 @@ export const EmptyList = styled.div`
   border-top: 1px solid #333333;
   border-radius: 8px;
 
-  div{
-
-    img{
+  div {
+    img {
       width: 56px;
       height: 56px;
       display: flex;
@@ -183,7 +178,7 @@ export const EmptyList = styled.div`
       margin-top: 64px;
     }
 
-    h2{
+    h2 {
       font-weight: 700;
       font-size: 16px;
       line-height: 140%;
@@ -192,7 +187,7 @@ export const EmptyList = styled.div`
       margin-top: 16px;
     }
 
-    p{
+    p {
       font-weight: 400;
       font-size: 16px;
       line-height: 140%;
@@ -201,5 +196,4 @@ export const EmptyList = styled.div`
       margin-top: 3px;
     }
   }
-
 `
