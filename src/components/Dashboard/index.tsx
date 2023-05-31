@@ -26,7 +26,7 @@ interface Task {
   completed: boolean
 }
 
-const Dashboard = () => {
+export const Dashboard = () => {
   const [tasks, setTasks] = useState<Task[]>(() => {
     const storagedTasks = localStorage.getItem('tasks')
     if (storagedTasks) {
@@ -38,36 +38,29 @@ const Dashboard = () => {
 
   const [typedTask, setTypedTask] = useState('')
 
-  const [totalTasks, setTotalTasks] = useState(() => {
-    const storagedTotalTasks = localStorage.getItem('totalTasks')
-    if (storagedTotalTasks) {
-      return JSON.parse(storagedTotalTasks)
-    } else {
-      return 0
-    }
-  })
-
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
   }, [tasks])
-
-  useEffect(() => {
-    localStorage.setItem('totalTasks', JSON.stringify(totalTasks))
-  }, [totalTasks])
 
   const handleCreateTask = (event: FormEvent) => {
     event.preventDefault()
 
     if (typedTask) {
-      setTasks([...tasks, { id: uuidv4(), task: typedTask, completed: false }])
+      const newTask = {
+        id: uuidv4(),
+        task: typedTask,
+        completed: false,
+      }
+
+      setTasks([...tasks, newTask])
+
       setTypedTask('')
-    } else {
-      return []
     }
   }
 
   const handleDeleteTask = (taskId: string) => {
-    setTasks(tasks.filter((task) => task.id !== taskId))
+    const newList = tasks.filter((task) => task.id !== taskId)
+    setTasks(newList)
   }
 
   const handleMarkTaskAsCompleted = (taskId: string) => {
@@ -99,17 +92,17 @@ const Dashboard = () => {
         </AddNewTask>
         <TasksData>
           <h2>
-            Tarefas criadas <span>{totalTasks}</span>{' '}
+            Tarefas criadas <span>{tasks.length}</span>
           </h2>
           <h2 className="done-text">
             Concluídas
             <span>
-              {completedTasks} de {totalTasks}
+              {completedTasks} de {tasks.length}
             </span>
           </h2>
         </TasksData>
 
-        {!totalTasks ? (
+        {tasks.length <= 0 ? (
           <EmptyList>
             <div>
               <img src={emptyImg} alt="Não há tarefas" />
@@ -139,5 +132,3 @@ const Dashboard = () => {
     </DashboardContainer>
   )
 }
-
-export default Dashboard

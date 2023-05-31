@@ -1,6 +1,5 @@
-
-import Dashboard from "./components/Dashboard"
-import GlobalStyle from "./styles/globalStyles"
+import { Dashboard } from './components/Dashboard'
+import GlobalStyle from './styles/globalStyles'
 
 const App = () => {
   return (
